@@ -20,6 +20,7 @@ class Chapter(BaseModel):
 
 class ComicBase(BaseModel):
     site: str
+    comic_name: str
 
 
 class ComicCreate(BaseModel):
@@ -33,7 +34,8 @@ class Comic(BaseModel):
     tags: Union[str, None] = None
     img_url: str
     comic_url: str
-    chapters: list[Chapter] = []
+    site: str
+    # chapters: list[Chapter] = []
 
     class Config:
         orm_mode = True

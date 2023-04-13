@@ -24,13 +24,13 @@ def read_comics(site: str, skip: int = 0, limit: int = 100, db: Session = Depend
     return comics
 
 
-@app.get("/comics/{comic_name}", response_model=schemas.Comic)
-def read_comic(comic_name: str, db: Session = Depends(get_db)):
-    db_comic = crud.get_comic(db, comic_name=comic_name)
-    return db_comic
+# @app.get("/comics/{comic_name}", response_model=list[schemas.Comic])
+# def read_comic(comic_name: str, db: Session = Depends(get_db)):
+#     comic = crud.get_comic(db, comic_name=comic_name)
+#     return comic
 
 
-@app.get("/comics/{comic_name}/chapters/", response_model=list[schemas.Chapter])
-def read_chapters(comic_name: str, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    chapters = crud.get_chapters(db, comic_name=comic_name, skip=skip, limit=limit)
+@app.get("/comics/{site}/{comic_name}/chapters/", response_model=list[schemas.Chapter])
+def read_chapters(site: str, comic_name: str, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    chapters = crud.get_chapters(db, site=site, comic_name=comic_name, skip=skip, limit=limit)
     return chapters
