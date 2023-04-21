@@ -13,6 +13,7 @@ class Comic(Base):
     img_url = Column(Text)
     comic_url = Column(Text)
     site = Column(Text, index=True)
+    status = Column(Text)
 
     chapters = relationship("Chapter", back_populates="owner")
 
@@ -22,5 +23,6 @@ class Chapter(Base):
     comic_name = Column(Text, ForeignKey("comics.comic_name"))
     chapter_name = Column(Text, primary_key=True)
     chapter_url = Column(Text)
+    image_urls = Column(Text)
 
     owner = relationship("Comic", back_populates="chapters")

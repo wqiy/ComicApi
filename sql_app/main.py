@@ -18,7 +18,7 @@ def get_db():
         db.close()
 
 
-@app.get("/comics/{site}", response_model=list[schemas.Comic])
+@app.get("/api/comic/{site}", response_model=list[schemas.Comic])
 def read_comics(site: str, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     comics = crud.get_comics(db, site=site, skip=skip, limit=limit)
     return comics
@@ -30,7 +30,7 @@ def read_comics(site: str, skip: int = 0, limit: int = 100, db: Session = Depend
 #     return comic
 
 
-@app.get("/comics/{site}/{comic_name}/chapters/", response_model=list[schemas.Chapter])
+@app.get("/api/comic/{site}/{comic_name}/chapters/", response_model=list[schemas.Chapter])
 def read_chapters(site: str, comic_name: str, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     chapters = crud.get_chapters(db, site=site, comic_name=comic_name, skip=skip, limit=limit)
     return chapters

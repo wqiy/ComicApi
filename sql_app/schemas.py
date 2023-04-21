@@ -13,12 +13,14 @@ class ChapterCreate(BaseModel):
 class Chapter(BaseModel):
     chapter_name: str
     chapter_url: str
+    image_urls: str
 
     class Config:
         orm_mode = True
 
 
 class ComicBase(BaseModel):
+    comic_id: int
     site: str
     comic_name: str
 
@@ -35,7 +37,8 @@ class Comic(BaseModel):
     img_url: str
     comic_url: str
     site: str
-    # chapters: list[Chapter] = []
+    status: str
+    chapters: list[Chapter] = []
 
     class Config:
         orm_mode = True
